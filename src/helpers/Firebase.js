@@ -6,8 +6,6 @@
 
 // Firebase Import
 import firebase from 'firebase';
-// Debug
-import {Debug, DebugLevel} from './Debug';
 
 // Firebase config
 const config = {
@@ -40,34 +38,6 @@ export function getUserObject() {
 	const user = userKey ? JSON.parse(localStorage.getItem(userKey)) : undefined;
 	return user;
 }
-
-/*export function saveUser(uid, data) {
-	FirebaseAuth().onAuthStateChanged(function(user) {
-		if (user) {
-			// Save claim data to database
-			UsersDatabase.push().set({
-				uid: user.uid,
-				timestamp: Date.now(),
-				data: data
-			});
-			// Get claim entry key
-			var claimKey = ClaimsDatabase.key;
-			// Return claim key
-			return claimKey;
-		} else {
-			// Save claim data to database
-			ClaimsDatabase.push().set({
-				uid: data.email,
-				timestamp: Date.now(),
-				data: data
-			});
-			// Get claim entry key
-			var claimKey = ClaimsDatabase.key;
-			// Return claim key
-			return claimKey;
-		}
-	});
-}*/
 
 /* =============================================================================== */
 // AUTHENTICATION FUNCTIONS
@@ -114,73 +84,6 @@ export function loginWithGoogle() {
 export function loginWithEmail(email, password) {
 	return FirebaseAuth().signInWithEmailAndPassword(email, password);
 }
-
-/*function authenticate(promise) {
-    return promise
-        .then(function (result) {
-            // login with your app with result object to get accessToken (token)
-            // localStorage.save(token);
-            var token = result.credential.accessToken;
-            var user = result.user;
-            console.log("login happened with firebase, ", JSON.stringify(user));
-            localStorage.setItem("firebaseUser", JSON.stringify(result));
-            return Promise.resolve(result);
-        }).catch(function(error){
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            alert("failed firebase login" + error);
-            return Promise.reject("err");
-        });
-}*/
-
-/* ================================= */
-// Login With Firebase
-// description:
-// conducts the firebase functions using
-// a provided email and password for authentication
-// parameters:
-// String email - user email
-// String password - user password
-/* ================================= */
-/*
-function loginWithFirebase(provider) {
-    return FirebaseAuth().signInWithRedirect(provider);
-
-		/*
-     FirebaseAuth().signInWithPopup(provider).then(function (result) {
-     // This gives you a Google Access Token. You can use it to access the Google API.
-     const token = result.credential.accessToken;
-     // The signed-in user info.
-     const user = result.user;
-     // ...
-     console.log("google login success. token=", token, ",user=", JSON.stringify(user));
-     }).catch(function (error) {
-     // Handle Errors here.
-     const errorCode = error.code;
-     const errorMessage = error.message;
-     // The email of the user's account used.
-     const email = error.email;
-     // The firebase.auth.AuthCredential type that was used.
-     const credential = error.credential;
-     // ...
-     console.log("google login failed.reason=", errorMessage);
-     });
-
-}*/
-
-/* ================================= */
-// Login As Guest
-// description:
-// function for anonymous login with temporary
-// guest user accounts
-/* ================================= */
-/*function loginAsGuest() {
-	return FirebaseAuth().signInAnonymously();
-}*/
 
 /* ================================= */
 // Logout

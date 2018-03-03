@@ -180,7 +180,7 @@ class Menu extends Component {
 			<div>
 				<AppBar
 					style={style}
-					onTitleTouchTap={this.handleToggle}
+					onTouchTap={this.handleToggle}
 					titleStyle={
 						// Reduce Logo Size for Smaller Screens
 						(this.state.width > 500) ? (

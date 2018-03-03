@@ -71,9 +71,9 @@ class App extends React.Component {
 				//Debug User
 				Debug.output(DebugLevel.MILD, "App (ComponentDidMount - User Auth Change)", JSON.stringify(user));
 
-				// Redirect Page
+				/*// Redirect Page
 				const {history} = this.props;
-				history.replaceState(null, '/account');
+				history.replaceState(null, '/account');*/
 			} else {
 				// Update Authenticated Status
 				this.setState({
@@ -125,19 +125,6 @@ class App extends React.Component {
 				<DashboardPage />
 			</div>
 		)
-		/*// Account Route Component
-		const Account = () => (
-			<div>
-				<AccountPage />
-			</div>
-		)
-		// Contact Route Component
-		const Contact = () => (
-			<div>
-				{//<ContactUsPage />
-				}
-			</div>
-		)*/
 
 		// Authentication Loading
 		if(this.state.loading) {

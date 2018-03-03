@@ -11,7 +11,7 @@ import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {
-	red700,	red900,
+	red700,
 	grey300,
 	grey900,
 	orange500,
@@ -28,9 +28,9 @@ const muiTheme = getMuiTheme({
 		primary1Color: darkBlack,
 		primary2Color: orange500,
 		primary3Color: white,
-		accent1Color: grey300, //'rgb(255, 193, 0)',
+		accent1Color: grey300,
 		accent2Color: grey300,
-		accent3Color: blueGrey50,//yellow900,
+		accent3Color: blueGrey50,
 		textColor: white,
 		alternateTextColor: black,
 		canvasColor: grey900,

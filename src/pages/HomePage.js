@@ -7,7 +7,6 @@
 // Library Imports
 import React from 'react';
 // Material UI
-import RaisedButton from 'material-ui/RaisedButton';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 // Local Imports
 import Menu from '../menu/Menu';
