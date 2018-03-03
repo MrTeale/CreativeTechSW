@@ -27,6 +27,7 @@ import {Debug, DebugLevel} from "../helpers/Debug";
 import Login from '../login/Login';
 // Assets
 import Logo from '../assets/Logo.svg';
+import { RaisedButton } from 'material-ui';
 
 /**
 *	Menu Class
@@ -180,7 +181,6 @@ class Menu extends Component {
 			<div>
 				<AppBar
 					style={style}
-					onTouchTap={this.handleToggle}
 					titleStyle={
 						// Reduce Logo Size for Smaller Screens
 						(this.state.width > 500) ? (
@@ -192,7 +192,19 @@ class Menu extends Component {
 								{...titleStyle, backgroundSize: "200px 40px", backgroundPosition: "center"}
 							)
 						)}
-					iconElementLeft={<IconButton onTouchTap={this.handleToggle}><MenuIcon color={this.props.muiTheme.palette.textColor} /></IconButton>}
+					iconElementLeft={
+						(this.state.loggedIn) ? (
+							<IconButton onTouchTap={this.handleToggle}>
+								<MenuIcon color={this.props.muiTheme.palette.textColor} />
+							</IconButton>
+						) : (
+							<RaisedButton
+								backgroundColor={this.props.muiTheme.palette.primary2Color} 
+								label="Login" 
+								containerElement={<Link to={"/login"}/>} 
+							/>
+						)
+					}
 				/>
 				<Drawer
 					docked={false}

@@ -7,7 +7,8 @@
 // Library Imports
 import React from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+//import createBrowserHistory from 'history/lib/createBrowserHistory';
 // Material UI
 import CircularProgress from 'material-ui/CircularProgress';
 import muiThemeable from 'material-ui/styles/muiThemeable';
@@ -17,7 +18,9 @@ import {FirebaseAuth} from "./helpers/Firebase";
 import {Debug, DebugLevel} from './helpers/Debug';
 // Local Imports
 import HomePage from './pages/HomePage';
-import DashboardPage from './pages/DashboardPage'
+import DashboardPage from './pages/DashboardPage';
+import TestBuilderPage from './pages/TestBuilderPage';
+import LoginPage from './pages/LoginPage';
 
 // Inject Tap Event
 injectTapEventPlugin();
@@ -125,6 +128,18 @@ class App extends React.Component {
 				<DashboardPage />
 			</div>
 		)
+		// Login Route Component
+		const Login = () => (
+			<div>
+				<LoginPage />
+			</div>
+		)
+		// Test Builder Route Component
+		const TestBuilder = () => (
+			<div>
+				<TestBuilderPage />
+			</div>
+		)
 
 		// Authentication Loading
 		if(this.state.loading) {
@@ -135,12 +150,16 @@ class App extends React.Component {
 				</div>
 			)
 		} else {
+			//let browserHistory = createBrowserHistory();
+
 			// Main Content
 			return (
-				<Router>
+				<Router /*history={browserHistory}*/>
 					<div style={style}>
 						<Route exact path="/" component={Home}/>
 						<Route exact path="/dashboard" component={Dashboard}/>
+						<Route exact path="/login" component={Login}/>
+						<Route exact path="/create-test" component={TestBuilder}/>
 					</div>
 				</Router>
 			)

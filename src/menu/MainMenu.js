@@ -14,10 +14,12 @@ import {
 	FlatButton,
 } from 'material-ui';
 // Material UI Icons
-import SearchIcon from 'material-ui/svg-icons/action/search';
-import AccountIcon from 'material-ui/svg-icons/action/account-circle';
+import DashboardIcon from 'material-ui/svg-icons/action/dashboard';
+import InfoIcon from 'material-ui/svg-icons/action/info';
 import ContactUsIcon from 'material-ui/svg-icons/content/mail';
 import muiThemeable from 'material-ui/styles/muiThemeable';
+// Firebase
+import {FirebaseAuth} from "../helpers/Firebase";
 
 /**
 *	Main Menu Class
@@ -34,6 +36,7 @@ class MainMenu extends Component {
 		this.state = {
 			width: '0',
 			height: '0',
+			loggedIn: (FirebaseAuth().currentUser !== null)
 		};
 		this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 	}
@@ -105,9 +108,9 @@ class MainMenu extends Component {
 			<div style={menuStyle}>
 				<div style={{height: (this.state.height-80)/3 + 'px', width: '100%'}}>
 					<FlatButton
-						label="Authors"
+						label="About"
 						labelStyle={buttonLabelStyle}
-						containerElement={<Link to={"/claim"}/>}
+						containerElement={<Link to={"/about"}/>}
 						style={
 							this.state.width > 600 ? (
 								{...buttonStyle, backgroundColor: 'rgba(0,0,0,0.8)'}
@@ -115,18 +118,26 @@ class MainMenu extends Component {
 								{...buttonSmallStyle, backgroundColor: 'rgba(0,0,0,0.8)'}
 							)
 						}
-						hoverColor={this.props.muiTheme.palette.canvasColor}
+						hoverColor={this.props.muiTheme.palette.accent2Color}
 						icon={
-							<AccountIcon
+							<InfoIcon
 								style={buttonIconStyle}
-								color={this.props.muiTheme.palette.accent1Color} hoverColor={this.props.muiTheme.palette.canvasColor}
+								color={this.props.muiTheme.palette.accent1Color} 
+								hoverColor={this.props.muiTheme.palette.accent2Color}
 							/>
 						}
 					/>
 					<FlatButton
-						label="Explore"
+						label="Dashboard"
 						labelStyle={buttonLabelStyle}
-						containerElement={<Link to={"/account"}/>}
+						
+						containerElement={
+							this.state.loggedIn ? (
+								<Link to={"/dashboard"}/>
+							) : (
+								<Link to={"/login"}/>
+							)
+						}
 						style={
 							this.state.width > 600 ? (
 								{...buttonStyle, backgroundColor: 'rgba(0,0,0,0.8)'}
@@ -135,10 +146,10 @@ class MainMenu extends Component {
 							)
 						}
 						icon={
-							<SearchIcon
+							<DashboardIcon
 								style={buttonIconStyle}
 								color={this.props.muiTheme.palette.accent1Color}
-								hoverColor={this.props.muiTheme.palette.canvasColor}
+								hoverColor={this.props.muiTheme.palette.accent2Color}
 							/>
 						}
 					/>
@@ -156,7 +167,8 @@ class MainMenu extends Component {
 						icon={
 							<ContactUsIcon
 								style={buttonIconStyle}
-								color={this.props.muiTheme.palette.accent1Color} hoverColor={this.props.muiTheme.palette.canvasColor}
+								color={this.props.muiTheme.palette.accent1Color} 
+								hoverColor={this.props.muiTheme.palette.accent2Color}
 							/>
 						}
 					/>

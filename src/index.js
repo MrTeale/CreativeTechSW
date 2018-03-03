@@ -28,7 +28,7 @@ const muiTheme = getMuiTheme({
 		primary1Color: darkBlack,
 		primary2Color: orange500,
 		primary3Color: white,
-		accent1Color: grey300,
+		accent1Color: orange500,
 		accent2Color: grey300,
 		accent3Color: blueGrey50,
 		textColor: white,
@@ -42,8 +42,8 @@ const muiTheme = getMuiTheme({
 
 /**
 *	Index Class
-* @name Index
-* @description Main react component for application
+*	@name Index
+*	@description Main react component for application
 *	@author Michael Smallcombe
 */
 export class Index extends Component {

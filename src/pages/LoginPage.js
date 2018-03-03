@@ -1,24 +1,33 @@
 /* =============================================================================== */
-// LOGIN DIALOG COMPONENT
+// LOGIN PAGE COMPONENT
 // ----------------------------
-// login.js
+// Login.js
 /* =============================================================================== */
 
 // Library Imports
 import React from 'react';
 // Material UI
-import {FontIcon, RaisedButton, FlatButton, TextField, Dialog} from "material-ui";
+import {
+	FontIcon, 
+	RaisedButton, 
+	FlatButton, 
+	TextField
+} from 'material-ui';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 // Firebase
-import {loginWithGoogle, loginWithEmail, sendPasswordResetEmail, signupEmail} from "../helpers/Firebase";
+import {FirebaseAuth, loginWithGoogle, loginWithEmail, sendPasswordResetEmail, signupEmail} from "../helpers/Firebase";
+// Local Imports
+import Menu from '../menu/Menu';
 // Constants
 const FirebaseAuthKey = "FirebaseAuthInProgress";
 
 /**
-*	Login Class
+*	Login Page Class
+*	@name LoginPage
+*	@description Dedicated page for logging into account
 *	@author Michael Smallcombe
 */
-class Login extends React.Component {
+class LoginPage extends React.Component {
 	/* =============================================================================== */
 	// CONSTRUCTOR
 	/* =============================================================================== */
@@ -27,15 +36,27 @@ class Login extends React.Component {
 		this.state = {
 			email: "",
 			password: "",
-			open: this.props.open,
+			width: '0',
+			height: '0',
 		};
+		this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 	}
+	componentDidMount() {
+		// Redirect on login
+		/*if(FirebaseAuth().currentUser !== null) {
+			this.props.browserHistory.push('/');
+		}*/
 
-	// Handle Incoming Properties
-	componentWillReceiveProps(props) {
-		this.setState({open: props.open});
+		this.updateWindowDimensions();
+		window.addEventListener('resize', this.updateWindowDimensions);
 	}
-
+	componentWillMount() {
+		window.removeEventListener('resize', this.updateWindowDimensions);
+	}
+	updateWindowDimensions() {
+		this.setState({width: window.innerWidth, height: window.innerHeight});
+    }
+	
 	/* =============================================================================== */
 	// STATE MODIFIERS
 	/* =============================================================================== */
@@ -132,12 +153,24 @@ class Login extends React.Component {
 	// COMPONENT RENDER
 	/* =============================================================================== */
 	render() {
-		const position = {
+        const pageStyle={
+			backgroundColor: this.props.muiTheme.palette.canvasColor,
+			height: (this.state.height)+'px'
+        }
+		const contentStyle={
+			fontSize: 20,
+			margin: '0 auto',
+			marginTop: (this.state.height)/4 + 'px',
+			width: '66%',
+			height: ((this.state.height-80)/3 * 2) + 'px'
+        }
+        const position = {
 			display: 'flex',
 			flexDirection: 'column',
 			height: '100%',
 			alignItems:'center',
-			justifyContent:'center'
+			justifyContent:'center',
+			marginTop: (this.state.height)/8 + 'px',
 		}
 		const iconStyles = {
 				color: "#ffffff"
@@ -150,77 +183,74 @@ class Login extends React.Component {
 			/>
 		];
 		return (
-			<Dialog
-				autoDetectWindowHeight
-				title="Login"
-				bodyStyle={{height:'100%', width:'100%'}}
-				titleStyle={{height:'30px', padding:'24px', paddingTop:'10px', paddingBottom:'0px'}}
-				actions={actions}
-				open={this.state.open}
-				modal={false}
-				onRequestClose={this.handleCancel}
-			>
-			<div style={position}>
-				<div>
-					<TextField
-						id="login-email"
-						ref="email"
-						floatingLabelStyle={{color: this.props.muiTheme.palette.accent3}}
-						textareaStyle={{color: this.props.muiTheme.palette.textColor}}
-						inputStyle={{color: this.props.muiTheme.palette.textColor}}
-						style={{textAlign:'center', margin:'0px', width:'100%'}}
-						hintText="Email"
-						floatingLabelText="Email"
-						type="text"
-						onChange={this.onChange}
-					/>
-					<br />
-					<TextField
-						id="login-password"
-						ref="password"
-						floatingLabelStyle={{color: this.props.muiTheme.palette.accent3}}
-						textareaStyle={{color: this.props.muiTheme.palette.textColor}}
-						inputStyle={{color: this.props.muiTheme.palette.textColor}}
-						style={{margin: '0px', width: '100%'}}
-						hintText="Password"
-						floatingLabelText="Password"
-						type="password"
-						onChange={this.onChange}
-					/>
-					<br/>
-					<FlatButton
-						label="Forgot Password"
-						onTouchTap={this.handlePasswordReset}
-					/>
-					<RaisedButton
-							label="Sign in"
-							labelColor={this.props.muiTheme.palette.textColor}
-							backgroundColor={this.props.muiTheme.palette.primary1Color}
-							onTouchTap={this.handleEmailLogin}
-					/>
-				</div>
-				<h3 style={{margin:'5px'}}>OR</h3>
-				<div>
-					<hr style={{margin:'2px', padding: '0px'}}/>
-					<RaisedButton
-							label="Sign in with Google"
-							labelColor={"#ffffff"}
-							backgroundColor="#dd4b39"
-							icon={<FontIcon className="fa fa-google-plus" style={iconStyles}/>}
-							onTouchTap={this.handleGoogleLogin}
-					/>
-					<RaisedButton
-							label="New User? Sign Up"
-							labelColor={this.props.muiTheme.palette.textColor}
-							backgroundColor={this.props.muiTheme.palette.primary1Color}
-							onTouchTap={this.handleEmailSignup}
-					/>
+			<div style={pageStyle}>
+				<Menu />
+				<div style={{textAlign: 'center', alignItems:'vertical'}}>
+					<div style={position}>
+						<div>
+							<h2>Login</h2>
+							<TextField
+								id="login-email"
+								ref="email"
+								floatingLabelStyle={{color: this.props.muiTheme.palette.accent3}}
+								textareaStyle={{color: this.props.muiTheme.palette.textColor}}
+								inputStyle={{color: this.props.muiTheme.palette.textColor}}
+								style={{textAlign:'center', margin:'0px', width:'100%'}}
+								hintText="Email"
+								floatingLabelText="Email"
+								type="text"
+								onChange={this.onChange}
+							/>
+							<br />
+							<TextField
+								id="login-password"
+								ref="password"
+								floatingLabelStyle={{color: this.props.muiTheme.palette.accent3}}
+								textareaStyle={{color: this.props.muiTheme.palette.textColor}}
+								inputStyle={{color: this.props.muiTheme.palette.textColor}}
+								style={{margin: '0px', width: '100%'}}
+								hintText="Password"
+								floatingLabelText="Password"
+								type="password"
+								onChange={this.onChange}
+							/>
+							<br/>
+							<FlatButton
+								label="Forgot Password"
+								onTouchTap={this.handlePasswordReset}
+							/>
+							<RaisedButton
+								label="Sign in"
+								labelColor={this.props.muiTheme.palette.textColor}
+								backgroundColor={this.props.muiTheme.palette.primary1Color}
+								onTouchTap={this.handleEmailLogin}
+							/>
+							<br />
+							<h3 style={{margin:'5px'}}>OR</h3>
+							<br />
+							<RaisedButton
+								style={{marginTop: '10px', width: '100%'}}
+								label="Sign in with Google"
+								labelColor={"#ffffff"}
+								backgroundColor="#dd4b39"
+								icon={<FontIcon className="fa fa-google-plus" style={iconStyles}/>}
+								onTouchTap={this.handleGoogleLogin}
+							/>
+							<br />
+							<RaisedButton
+								style={{marginTop: '10px', width: '100%'}}
+								label="New User? Sign Up"
+								labelColor={this.props.muiTheme.palette.textColor}
+								backgroundColor={this.props.muiTheme.palette.primary1Color}
+								onTouchTap={this.handleEmailSignup}
+							/>
+						</div>
+					</div>
 				</div>
 			</div>
-			</Dialog>
 		);
 	}
 }
 
 // Export Component
-export default muiThemeable()(Login);
+export default muiThemeable()(LoginPage);
