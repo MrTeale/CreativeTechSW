@@ -15,10 +15,9 @@ import {
 	//grey100,
 	grey300, //grey800,
 	grey900,
+	blueGrey50,
 	//brown500,
 	white, black, darkBlack, fullBlack,
-	purple900,
-	yellow900
 } from 'material-ui/styles/colors';
 // Local Imports
 import App from './App.js';
@@ -27,15 +26,15 @@ import App from './App.js';
 const muiTheme = getMuiTheme({
 	fontFamily: 'Roboto, sans-serif',
 	palette: {
-		primary1Color: purple900,
+		primary1Color: darkBlack,
 		primary2Color: grey900,
 		primary3Color: white,
-		accent1Color: 'rgb(255, 193, 0)',
+		accent1Color: grey300, //'rgb(255, 193, 0)',
 		accent2Color: grey300,
-		accent3Color: yellow900,
-		textColor: darkBlack,
+		accent3Color: blueGrey50,//yellow900,
+		textColor: white,
 		alternateTextColor: white,
-		canvasColor: white,
+		canvasColor: black,
 		borderColor: grey300,
 		pickerHeaderColor: red700,
 		shadowColor: fullBlack,

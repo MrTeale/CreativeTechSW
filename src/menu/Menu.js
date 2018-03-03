@@ -26,7 +26,7 @@ import {Debug, DebugLevel} from "../helpers/Debug";
 // Local Classes
 import Login from '../login/Login';
 // Assets
-//import Logo from '';
+import Logo from '../assets/Logo.svg';
 
 /**
 *	Menu Class
@@ -166,7 +166,7 @@ class Menu extends Component {
 			fontWeight: 400,
 			textAlign: "center",
 			backgroundColor: this.props.muiTheme.palette.primary1Color,
-			//backgroundImage: "url("+Logo+")",
+			backgroundImage: "url("+Logo+")",
 			backgroundSize: "250px 50px",
 			backgroundRepeat: "no-repeat",
 			backgroundPosition: ((this.state.width)/2)-200 + 'px center'

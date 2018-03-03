@@ -49,7 +49,7 @@ class HomePage extends React.Component {
 	render() {
 		// Style Settings
 		const overlayStyle = {
-			backgroundColor: "rgba(74,20,140,0.8)",
+			backgroundColor: "rgba(0,0,0,0.8)",
 			opacity: '20%',
 			fontFamily: this.props.muiTheme.fontFamily,
 			fontSize: 50,
@@ -83,6 +83,13 @@ class HomePage extends React.Component {
 			transform: "translateX(-50%) translateY(-50%)",
 			backgroundSize: "cover"
 		}
+		const contentStyle={
+			fontSize: 20,
+			margin: '0 auto',
+			marginTop: (this.state.height)/4 + 'px',
+			width: '66%',
+			height: ((this.state.height-80)/3 * 2) + 'px'
+		}
 		/*const pageStyle = {
 			position: 'relative',
 			width: '100%',
@@ -103,12 +110,14 @@ class HomePage extends React.Component {
 									<source src={VideoMP4} type="video/mp4" />
 								</video>
 								<div ref="overlay" style={overlayStyle}>
-									<p style={{textAlign: 'center', fontSize: '12'}}>
-										A customisable interviewing tool for qualitative research with in depth analysis using machine learning and natural language processing for report generation.
-									</p>
-									<p style={{textSize: '12'}}>
-										Customisable test that allows for moderation and more accurate, quality data to be obtained while also saving time with inbuilt analysis 
-									</p>
+									<div style={contentStyle}>
+										<p>
+											A customisable interviewing tool for qualitative research with in depth analysis using machine learning and natural language processing for report generation.
+										</p>
+										<p>
+											Customisable test that allows for moderation and more accurate, quality data to be obtained while also saving time with inbuilt analysis 
+										</p>
+									</div>
 								</div>
 							</div>
 						)
