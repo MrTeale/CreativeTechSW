@@ -16,7 +16,8 @@ import {FirebaseAuth} from "./helpers/Firebase";
 // Debug
 import {Debug, DebugLevel} from './helpers/Debug';
 // Local Imports
-import HomePage from './pages/HomePage.js';
+import HomePage from './pages/HomePage';
+import DashboardPage from './pages/DashboardPage'
 
 // Inject Tap Event
 injectTapEventPlugin();
@@ -118,23 +119,16 @@ class App extends React.Component {
 				<HomePage />
 			</div>
 		)
-		/*// Claim Route Component
-		const Claim = () => (
+		// Dashboard Route Component
+		const Dashboard = () => (
 			<div>
-				<ClaimPage />
+				<DashboardPage />
 			</div>
 		)
-		// Account Route Component
+		/*// Account Route Component
 		const Account = () => (
 			<div>
 				<AccountPage />
-			</div>
-		)
-		// Information Route Component
-		const Information = () => (
-			<div>
-				{//<InformationPage />
-				}
 			</div>
 		)
 		// Contact Route Component
@@ -148,9 +142,9 @@ class App extends React.Component {
 		// Authentication Loading
 		if(this.state.loading) {
 			return (
-				<div style={{...style, textAlign:"center", position:"absolute", top: (this.state.height/2)-200, left: (this.state.width/2)-160}}>
+				<div style={{...style, textAlign:"center", position:"absolute", top: (this.state.height/2)-200, left: (this.state.width/2)-160, color: this.props.muiTheme.palette.alternateTextColor}}>
 					<h2>Loading</h2>
-					<CircularProgress size={80} thickness={8} color={this.props.muiTheme.palette.primary1Color}/>
+					<CircularProgress size={80} thickness={8} color={this.props.muiTheme.palette.primary2Color}/>
 				</div>
 			)
 		} else {
@@ -159,6 +153,7 @@ class App extends React.Component {
 				<Router>
 					<div style={style}>
 						<Route exact path="/" component={Home}/>
+						<Route exact path="/dashboard" component={Dashboard}/>
 					</div>
 				</Router>
 			)

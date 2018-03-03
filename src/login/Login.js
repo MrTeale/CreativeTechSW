@@ -129,8 +129,8 @@ class Login extends React.Component {
   }
 
 	/* =============================================================================== */
-  // COMPONENT RENDER
-  /* =============================================================================== */
+	// COMPONENT RENDER
+	/* =============================================================================== */
 	render() {
 		const position = {
 			display: 'flex',
@@ -153,7 +153,7 @@ class Login extends React.Component {
 			<Dialog
 				autoDetectWindowHeight
 				title="Login"
-				bodyStyle={{height:'100%'}}
+				bodyStyle={{height:'100%', width:'100%'}}
 				titleStyle={{height:'30px', padding:'24px', paddingTop:'10px', paddingBottom:'0px'}}
 				actions={actions}
 				open={this.state.open}

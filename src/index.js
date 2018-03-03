@@ -11,12 +11,11 @@ import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {
-	red700,	red900,	//redA700,
-	//grey100,
-	grey300, //grey800,
+	red700,	red900,
+	grey300,
 	grey900,
+	orange500,
 	blueGrey50,
-	//brown500,
 	white, black, darkBlack, fullBlack,
 } from 'material-ui/styles/colors';
 // Local Imports
@@ -27,14 +26,14 @@ const muiTheme = getMuiTheme({
 	fontFamily: 'Roboto, sans-serif',
 	palette: {
 		primary1Color: darkBlack,
-		primary2Color: grey900,
+		primary2Color: orange500,
 		primary3Color: white,
 		accent1Color: grey300, //'rgb(255, 193, 0)',
 		accent2Color: grey300,
 		accent3Color: blueGrey50,//yellow900,
 		textColor: white,
-		alternateTextColor: white,
-		canvasColor: black,
+		alternateTextColor: black,
+		canvasColor: grey900,
 		borderColor: grey300,
 		pickerHeaderColor: red700,
 		shadowColor: fullBlack,

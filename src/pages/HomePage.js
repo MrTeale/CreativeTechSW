@@ -18,7 +18,7 @@ import VideoMP4 from '../assets/Meeting.mp4';
 /**
 *	Home Page Class
 *	@name Home Page
-*	@description Landing page for the IOBJECT site
+*	@description Landing page for the Altus Analyst site
 *	@author Michael Smallcombe
 */
 class HomePage extends React.Component {
@@ -53,7 +53,7 @@ class HomePage extends React.Component {
 			opacity: '20%',
 			fontFamily: this.props.muiTheme.fontFamily,
 			fontSize: 50,
-			color: this.props.muiTheme.palette.alternateTextColor,
+			color: this.props.muiTheme.palette.textColor,
 			position: "fixed",
 			top: "50%",
 			left: "50%",
@@ -111,6 +111,7 @@ class HomePage extends React.Component {
 								</video>
 								<div ref="overlay" style={overlayStyle}>
 									<div style={contentStyle}>
+										<h1>Altus Analyst</h1>
 										<p>
 											A customisable interviewing tool for qualitative research with in depth analysis using machine learning and natural language processing for report generation.
 										</p>

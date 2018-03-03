@@ -192,13 +192,13 @@ class Menu extends Component {
 								{...titleStyle, backgroundSize: "200px 40px", backgroundPosition: "center"}
 							)
 						)}
-					iconElementLeft={<IconButton onTouchTap={this.handleToggle}><MenuIcon /></IconButton>}
+					iconElementLeft={<IconButton onTouchTap={this.handleToggle}><MenuIcon color={this.props.muiTheme.palette.textColor} /></IconButton>}
 				/>
 				<Drawer
 					docked={false}
 					open={this.state.open}
 					onRequestChange={(open) => this.setState({open})}
-					style={{backgroundColor: this.props.muiTheme.palette.primary1Color, color: this.props.muiTheme.palette.alternateTextColor}}
+					style={{backgroundColor: this.props.muiTheme.palette.primary1Color, color: this.props.muiTheme.palette.textColor}}
 				>
 					{this.state.loggedIn === true ? (
 						<MenuItem
@@ -207,7 +207,7 @@ class Menu extends Component {
 							primaryText={(this.state.user.name != null) ? this.state.user.name : this.state.user.email}
 						>
 							<Avatar
-								color={this.props.muiTheme.palette.alternateTextColor} backgroundColor={this.props.muiTheme.palette.primary1Color}
+								color={this.props.muiTheme.palette.textColor} backgroundColor={this.props.muiTheme.palette.primary1Color}
 								src={this.state.user.photo}
 								icon={<FaceIcon />}
 							/>
@@ -221,8 +221,8 @@ class Menu extends Component {
 					/>
 					<MenuItem
 						onClick={this.handleClose}
-						containerElement={<Link to="/claim" />}
-						primaryText="Claim"
+						containerElement={<Link to="/dashboard" />}
+						primaryText="Dashboard"
 					/>
 					{this.state.loggedIn === false ? (
 						<MenuItem

@@ -53,7 +53,7 @@ class MainMenu extends Component {
 	render() {
 		const menuStyle = {
 			fontFamily: this.props.muiTheme.fontFamily,
-			color: this.props.muiTheme.palette.alternateTextColor,
+			color: this.props.muiTheme.palette.textColor,
 			margin: 'auto',
 			position: 'relative',
 			width: '100%',
@@ -77,12 +77,12 @@ class MainMenu extends Component {
 			display: 'block'
 		}
 		const buttonStyle = {
-			color: this.props.muiTheme.palette.alternateTextColor,
+			color: this.props.muiTheme.palette.textColor,
 			height: '100%',
 			width: '33.33333333%'
 		}
 		const buttonSmallStyle = {
-			color: this.props.muiTheme.palette.alternateTextColor,
+			color: this.props.muiTheme.palette.textColor,
 			height: (this.state.height-80)/3 + 'px',
 			width: '100%',
 			minWidth: '200px',
