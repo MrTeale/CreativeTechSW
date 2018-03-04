@@ -108,9 +108,9 @@ class MainMenu extends Component {
 			<div style={menuStyle}>
 				<div style={{height: (this.state.height-80)/3 + 'px', width: '100%'}}>
 					<FlatButton
-						label="About"
+						label="Demo"
 						labelStyle={buttonLabelStyle}
-						containerElement={<Link to={"/about"}/>}
+						containerElement={<Link to={"/demo"}/>}
 						style={
 							this.state.width > 600 ? (
 								{...buttonStyle, backgroundColor: 'rgba(0,0,0,0.8)'}

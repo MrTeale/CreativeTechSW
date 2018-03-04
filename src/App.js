@@ -20,7 +20,9 @@ import {Debug, DebugLevel} from './helpers/Debug';
 import HomePage from './pages/HomePage';
 import DashboardPage from './pages/DashboardPage';
 import TestBuilderPage from './pages/TestBuilderPage';
+import DemoPage from './pages/DemoTestPage';
 import LoginPage from './pages/LoginPage';
+import DemoTestPage from './pages/DemoTestPage';
 
 // Inject Tap Event
 injectTapEventPlugin();
@@ -140,6 +142,11 @@ class App extends React.Component {
 				<TestBuilderPage />
 			</div>
 		)
+		const Demo = () => (
+			<div>
+				<DemoPage />
+			</div>
+		)
 
 		// Authentication Loading
 		if(this.state.loading) {
@@ -160,6 +167,7 @@ class App extends React.Component {
 						<Route exact path="/dashboard" component={Dashboard}/>
 						<Route exact path="/login" component={Login}/>
 						<Route exact path="/create-test" component={TestBuilder}/>
+						<Route exact path="/demo" component={Demo}/>
 					</div>
 				</Router>
 			)
