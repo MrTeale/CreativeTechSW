@@ -68,15 +68,16 @@ class DemoTestPage extends React.Component {
 	}
 	submitForm = () => {
 		let answers = [this.state.question1, this.state.question2, this.state.question3, this.state.question4];
+		console.log(JSON.stringify({"answers": answers}));
 		let targetUrl = 'https://us-central1-interview-your-app.cloudfunctions.net/datastore';
 			fetch(targetUrl, {
 				method: 'POST',
 				headers: {
+					'Origin': 'interview-your-app.appspot.com',
 					'Content-Type': 'application/json',
+					'Access-Control-Allow-Origin': '*'
 				},
-				body: JSON.stringify({
-					'answers': answers
-				})
+				data: {body: JSON.stringify({"answers": answers})}
 			})
 			.then(response => response.json())
 			.then(body => console.log(body));
